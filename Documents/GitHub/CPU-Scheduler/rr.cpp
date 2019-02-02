@@ -6,6 +6,7 @@
 #include<iostream>
 #include <queue>
 #include <math.h>
+
 RR:: RR(string inFile, int timeQuantum): SchedSim(inFile)
 {
   timeQ=timeQuantum;
@@ -35,20 +36,17 @@ void RR:: run()
       }
     }
     
-   
     bool completed = true;
     
     for (int  g = 0; g < pCount; g++) {
       if (priorityQ[g].notProcessed) {
         completed = false;
       }
-     
-      
     }
+
     if(completed){
       isFinish=true;
-    }
-      
+    } 
       
   }
   printClosing(clockT);  
@@ -58,9 +56,8 @@ double RR:: aveWait()
 {
   double totalWait=0;
   for(int i=0;i<pCount;i++)
-    {
-      totalWait+=(waitVec[i]-priorityQ[i].arrivalTime-priorityQ[i].burstTime);
-    }
+    totalWait+=(waitVec[i]-priorityQ[i].arrivalTime-priorityQ[i].burstTime);
+    
   return totalWait/(double)pCount;
 }
 
@@ -68,9 +65,8 @@ double RR:: aveRosponse()
 {
   double aveRosponse=0;
   for(int i=0;i<pCount;i++)
-    {
-      aveRosponse+= (double)i*(double)timeQ;
-    }
+    aveRosponse+= (double)i*(double)timeQ;
+
   return aveRosponse/(double)pCount;
 }
 
@@ -83,8 +79,7 @@ double RR:: aveTurnAround()
 {
   double aveTurn=0.00;
   for(int i=0;i<pCount;i++)
-    {
-      aveTurn += waitVec[i]- priorityQ[i].arrivalTime;
-    }
+    aveTurn += waitVec[i]- priorityQ[i].arrivalTime;
+
   return roundf((aveTurn/ pCount)*100)/100;
 }
