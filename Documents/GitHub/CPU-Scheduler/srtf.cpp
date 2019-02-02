@@ -16,22 +16,26 @@ void Srtf:: run()
   vector <int> rTime;
   int process=0;
   waitVec.push_back(clockT);
+
   while(!isFinished())
   {
-      process=shortestIndex();
-      cout<<"process num:"<<process<<endl;
-      
-      if(priorityQ[process].responseTime == -1)
-        priorityQ[process].responseTime = 10;
-      
-      for(int i=0;i<priorityQ[process].burstTime;i++)
-        {
-          printProcess(priorityQ[process].pid,clockT);
-          clockT++;
-        }
-      printFinish(priorityQ[process].pid,clockT);
-      priorityQ[process].notProcessed=false;
-      
+    //Select the shortest process
+    process=shortestIndex();
+    
+    //if this is the first response, record response time
+    if(priorityQ[process].responseTime == -1)
+      priorityQ[process].responseTime = clockT;
+    
+    //give the selected process the correct number of cycles
+    for(int i = 0; i < priorityQ[process].burstTime; i++)
+    {
+      printProcess(priorityQ[process].pid,clockT);
+      clockT++;
+    }
+
+    printFinish(priorityQ[process].pid,clockT);
+    priorityQ[process].notProcessed=false;
+    
   }
   printClosing(clockT);
 }
@@ -42,10 +46,10 @@ int Srtf :: shortestIndex()
   for(int i=0;i<pCount;i++)
   {
     if(smallI<priorityQ[i].burstTime && priorityQ[i].notProcessed)
-      {
-        smallI=priorityQ[i].burstTime;
-        index=i;
-      }
+    {
+      smallI=priorityQ[i].burstTime;
+      index=i;
+    }
   }
   
   return index;
@@ -54,10 +58,9 @@ int Srtf :: shortestIndex()
 bool Srtf :: isFinished()
 {
   for(int i=0;i<pCount;i++)
-  {
     if(priorityQ[i].notProcessed)
       return false;
-  }
+
   return true;
 }
 

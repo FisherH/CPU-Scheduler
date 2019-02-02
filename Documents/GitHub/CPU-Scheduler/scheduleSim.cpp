@@ -54,7 +54,7 @@ void SchedSim:: printClosing(int clockTime) {
   cout<<SYSTEM_TIME<<clockTime<<CLOSE_BRACKET<<COMPLETED<<endl;
 }
 
-int SchedSimm::processCount() {
+int SchedSim::processCount() {
   return pCount;
 }
 

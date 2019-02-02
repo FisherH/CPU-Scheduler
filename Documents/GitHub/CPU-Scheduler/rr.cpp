@@ -1,5 +1,5 @@
-//Michelle Simoni and Fisher Harris
 //rr.cpp
+//Michelle Simoni,Fisher Harris
 //date: 01/31/2019
 
 #include "rr.h"
@@ -16,9 +16,11 @@ void RR:: run()
 {
   burst=0;
   bool isFinish = false;
+
   while (!isFinish) {
     for (int  i = 0; i < pCount; i++) {
       if (priorityQ[i].arrivalTime <= clockT && priorityQ[i].notProcessed) {
+
         for (int j = 0; j < timeQ; j++) {
           printProcess(priorityQ[i].pid,clockT);
           clockT++;
@@ -38,16 +40,12 @@ void RR:: run()
     
     bool completed = true;
     
-    for (int  g = 0; g < pCount; g++) {
-      if (priorityQ[g].notProcessed) {
+    for (int  g = 0; g < pCount; g++)
+      if (priorityQ[g].notProcessed)
         completed = false;
-      }
-    }
-
-    if(completed){
-      isFinish=true;
-    } 
       
+    if(completed)
+      isFinish=true;
   }
   printClosing(clockT);  
 }
@@ -70,11 +68,6 @@ double RR:: aveRosponse()
   return aveRosponse/(double)pCount;
 }
 
-double RR:: cpuUsage()
-{
-  return ((double)burst/(double)clockT)*100;
-}
-
 double RR:: aveTurnAround()
 {
   double aveTurn=0.00;
@@ -82,4 +75,9 @@ double RR:: aveTurnAround()
     aveTurn += waitVec[i]- priorityQ[i].arrivalTime;
 
   return roundf((aveTurn/ pCount)*100)/100;
+}
+
+double RR:: cpuUsage()
+{
+  return ((double)burst/(double)clockT)*100;
 }
