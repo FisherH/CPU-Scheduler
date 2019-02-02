@@ -1,7 +1,6 @@
 //Michelle Simoni and Fisher Harris
 //srtf.h
 //date: 01/29/31
-
 #include "scheduleSim.h"
 
 #ifndef SRTF_H
@@ -10,24 +9,24 @@
 using namespace std;
 
 class Srtf : public SchedSim{
- public:
- Srtf(string inFile, int timeQuantum);
- ~Srtf(void){};
-
-  void run();
+  public:
+    Srtf(string inFile, int timeQuantum);
+    ~Srtf(void){};
+    void run();
 
  protected:
   
   //descriptoin: this function is to find the average waiting time for all
   //processes
-  //  double aveWait();
+  double aveWait();
+
   //description: this function is to find the response time for all
   //processes
   double aveResponse();
 
   //description: this function is to find the turn around time for all
   //processes
-  //  double aveTurnAround();
+  double aveTurnAround();
 
   //description: this function will find the cpu Usage for the scheduler
   // double cpuUsage();

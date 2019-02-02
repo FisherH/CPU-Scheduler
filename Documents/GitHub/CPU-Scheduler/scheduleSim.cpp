@@ -21,8 +21,6 @@ const string AVE_RESPONSE="Average responseTime :";
 const string AVE_TURN="Average turnaround time :";
 const string PERCENT="%";
 
-
-
 SchedSim:: SchedSim( string input)
 {
   inFile=input;
@@ -34,9 +32,7 @@ SchedSim:: SchedSim( string input)
   inputFile();
 }
 
-
-void SchedSim:: printStats()
-{
+void SchedSim:: printStats() {
   cout<<LINE<<endl;
   cout<<CPU<<cpuUsage()<<PERCENT<<endl;
   cout<<AVE_WAIT<<aveWait()<<endl;
@@ -45,48 +41,43 @@ void SchedSim:: printStats()
   cout<<LINE<<endl;
 }
 
-
 ////////////////protected//////////////////
-void SchedSim:: printProcess(int pid, int clockTime)
-{
-    cout<< SYSTEM_TIME<<clockTime<<CLOSE_BRACKET<<PROCESS<<pid<<RUNNING<<endl;
+void SchedSim:: printProcess(int pid, int clockTime) {
+  cout<< SYSTEM_TIME<<clockTime<<CLOSE_BRACKET<<PROCESS<<pid<<RUNNING<<endl;
 }
 
-void SchedSim:: printFinish(int pid, int clockTime)
-{
-    cout<<SYSTEM_TIME<<clockTime<<CLOSE_BRACKET<<PROCESS<<pid<<FINISHED<<endl;
+void SchedSim:: printFinish(int pid, int clockTime) {
+  cout<<SYSTEM_TIME<<clockTime<<CLOSE_BRACKET<<PROCESS<<pid<<FINISHED<<endl;
 }
 
-void SchedSim:: printClosing(int clockTime)
-{
-    cout<<SYSTEM_TIME<<clockTime<<CLOSE_BRACKET<<COMPLETED<<endl;
+void SchedSim:: printClosing(int clockTime) {
+  cout<<SYSTEM_TIME<<clockTime<<CLOSE_BRACKET<<COMPLETED<<endl;
+}
+
+int SchedSimm::processCount() {
+  return pCount;
 }
 
 ///////////////functions just ment for children////////
 
-double SchedSim:: aveWait()
-{
+double SchedSim:: aveWait() {
   return 0.00;
 }
 
-double SchedSim:: aveRosponse()
-{
+double SchedSim:: aveRosponse() {
   return 0.00;
 }
 
-double SchedSim:: aveTurnAround()
-{
+double SchedSim:: aveTurnAround() {
   return 0.00;
 }
 
 
-double SchedSim :: cpuUsage()
-{
+double SchedSim :: cpuUsage() {
   return 0.00;
 }
 ///////////////////private//////////////////
-void SchedSim:: inputFile()
-{
+void SchedSim:: inputFile() {
   ifstream file(inFile.c_str());
   
   if(file.is_open())

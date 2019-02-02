@@ -8,25 +8,16 @@
 
 class RR : public SchedSim
 {
- public:
- RR(string inFile, int timeQuantum);
-  ~RR(void){};
+  public:
+    RR(string inFile, int timeQuantum);
+    ~RR(void){};
+    void run();
 
-  void run();
-
- protected:
-
-  
- private:
-  int timeQ;
-
- 
-  double aveWait();
-
-  double aveRosponse();
-
-  double cpuUsage();
-
-  double aveTurnAround();
+  private:
+    int timeQ;
+    double aveWait();
+    double aveRosponse();
+    double cpuUsage();
+    double aveTurnAround();
 };
 #endif

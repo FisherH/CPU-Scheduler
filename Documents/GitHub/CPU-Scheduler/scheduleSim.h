@@ -36,6 +36,10 @@ public:
   //description: will print out the cpu usage, average waiting time, average
   //response time, lastly average turnaround time
   void printStats();
+
+
+
+  int processCount();
   
 protected:
     //description: a function to call to print out what it would say if
