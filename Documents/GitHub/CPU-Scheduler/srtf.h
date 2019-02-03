@@ -2,15 +2,16 @@
 //srtf.h
 //date: 01/29/31
 #include "scheduleSim.h"
+#include <vector>
 
 #ifndef SRTF_H
 #define SRTF_H
 
 using namespace std;
 
-class Srtf : public SchedSim{
+class Srtf : public SchedSim {
   public:
-    Srtf(string inFile) : SchedSim(inFile){};
+    Srtf(string inFile);
     ~Srtf(void){};
     void run();
 
@@ -39,6 +40,8 @@ class Srtf : public SchedSim{
   //description: is a function within this class that will look at the vector and
   //return true if everything is processed or false otherwise
   bool isFinished();
+
+  static const int MAX = 1000000;
 
 };
 #endif

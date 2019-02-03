@@ -10,36 +10,55 @@
 
 using namespace std;
 
-
 void Srtf:: run()
 {
-  vector <int> rTime;
-  int process=0;
-  waitVec.push_back(clockT);
+  vector<int> rt; // Remaining time
 
-  while(!isFinished())
+  for (int i = 0; i < pCount; i++) 
   {
-    //Select the shortest process
-    process=shortestIndex();
-    
-    //if this is the first response, record response time
-    if(priorityQ[process].responseTime == -1)
-      priorityQ[process].responseTime = clockT;
-    
-    //give the selected process the correct number of cycles
-    for(int i = 0; i < priorityQ[process].burstTime; i++)
-    {
-      printProcess(priorityQ[process].pid,clockT);
-      clockT++;
+    rt.push_back(priorityQ[i].burstTime);
+    waitVec.push_back(-1);
+  }
+
+  int complete = 0, min = MAX;
+  int shortest = 0, finishTime;
+  bool check = false;
+
+  // Process until all processes gets completed
+  while (complete != pCount) {
+    for (int j = 0; j < pCount; j++) {
+      if ((priorityQ[j].arrivalTime <= clockT) &&
+          (rt[j] < min) && rt[j] > 0) {
+        min = rt[j];
+        shortest = j;
+        check = true;
+      }
     }
 
-    printFinish(priorityQ[process].pid,clockT);
-    priorityQ[process].notProcessed=false;
-    
-  }
-  printClosing(clockT);
-}
+    printProcess(priorityQ[shortest +1].pid, clockT);
 
+    if (check == false) 
+      clockT++;
+   
+
+    rt[shortest]--;
+    min = rt[shortest];
+
+    if (min == 0)
+      min = MAX;
+
+    if (rt[shortest] == 0) {
+      complete++;
+      finishTime = clockT + 1;
+      printFinish(shortest+1, clockT);
+      waitVec[shortest] = finishTime - priorityQ[shortest].burstTime -
+        priorityQ[shortest].arrivalTime;
+      if(waitVec[shortest] < 0)
+        waitVec[shortest] = 0;
+    }
+    clockT++;
+  }
+}
 int Srtf :: shortestIndex()
 {
   int smallI=0,index=0;
@@ -55,15 +74,6 @@ int Srtf :: shortestIndex()
   return index;
 }
 
-bool Srtf :: isFinished()
-{
-  for(int i=0;i<pCount;i++)
-    if(priorityQ[i].notProcessed)
-      return false;
-
-  return true;
-}
-
 double Srtf :: aveResponse()
 {
   double sum = 0;
@@ -74,4 +84,17 @@ double Srtf :: aveResponse()
   return sum / pCount;
 }
 
+double Srtf::aveWait()
+{
+  return 0;
+}
 
+double Srtf::aveTurnAround()
+{
+  return 0;
+}
+
+double Srtf::cpuUsage()
+{
+  return 0;
+}

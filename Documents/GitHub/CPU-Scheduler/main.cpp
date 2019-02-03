@@ -21,26 +21,13 @@ main()
   cout << "---CPSC3500 Project 2 by Fisher H and Michelle S---" << endl;
   
   //Get filename
-  string file;
-  cout<<"What file do you want to read from?";
-  cout<<endl;
-  cin>>file;
-  
-  //Get schedule type
-  string type;
-  cout << "What schedule type would you like to use? (SRTF/RR/FCFS)" << endl;
-  cout<<endl;
-  cin >> type;
+  string file = "input1.txt";
   
   //Get a quantum value
-  int num;
-  cout<<"What would you like to use as your quantum number?";
-  cout<<endl;
-  cin>>num;
-  cout<<endl;
+  int num = 1;
 
   
-  RR S1(file,num);
+  Srtf S1(file);
   S1.run();
 
 

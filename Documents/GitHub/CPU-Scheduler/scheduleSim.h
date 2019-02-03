@@ -19,10 +19,9 @@ struct process {
   bool notProcessed;
 }; 
 
-class SchedSim{
+class SchedSim {
 
-public:
-
+  public:
   //pre: assuming that the user inputs a string to a file
   //post: will upload file to the scheduling sims memory
   SchedSim(string input);
@@ -39,7 +38,7 @@ public:
 
   int processCount();
   
-protected:
+  protected:
     //description: a function to call to print out what it would say if
     // the process was running
     void printProcess(int pid, int clockTime);
@@ -82,7 +81,7 @@ protected:
     vector<int> waitVec;
     vector<int> burstVec;
     
-private:
+  private:
 
     //pre: assuming the user input is a file
     //post: will open file and parse into a process node and insert in

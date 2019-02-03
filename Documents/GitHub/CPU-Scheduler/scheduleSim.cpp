@@ -89,7 +89,7 @@ void SchedSim:: inputFile() {
             arival,
             burst,
             burst,
-            true
+            1
           };
           priorityQ.push_back(tempNode);
           pCount++;
