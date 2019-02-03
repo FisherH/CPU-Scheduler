@@ -6,10 +6,10 @@
 #include "srtf.h"
 #include <vector>
 #include <iostream>
+#include <string>
 
 using namespace std;
 
-Srtf:: Srtf(string inFile, int timeQuantum): SchedSim(inFile){};
 
 void Srtf:: run()
 {
@@ -73,3 +73,5 @@ double Srtf :: aveResponse()
     
   return sum / pCount;
 }
+
+

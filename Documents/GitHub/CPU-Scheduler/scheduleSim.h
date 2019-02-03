@@ -17,8 +17,8 @@ struct process {
   int timeRemain;
   int responseTime;
   bool notProcessed;
-}
-  ; 
+}; 
+
 class SchedSim{
 
 public:
@@ -36,8 +36,6 @@ public:
   //description: will print out the cpu usage, average waiting time, average
   //response time, lastly average turnaround time
   void printStats();
-
-
 
   int processCount();
   
@@ -90,8 +88,5 @@ private:
     //post: will open file and parse into a process node and insert in
     //our vector
     void inputFile();
-    
-  
-
 };
 #endif

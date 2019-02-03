@@ -40,7 +40,7 @@ main()
   cout<<endl;
 
   
-  Srtf S1(file,num);
+  RR S1(file,num);
   S1.run();
 
 

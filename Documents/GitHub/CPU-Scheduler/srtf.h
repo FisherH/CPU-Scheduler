@@ -10,7 +10,7 @@ using namespace std;
 
 class Srtf : public SchedSim{
   public:
-    Srtf(string inFile, int timeQuantum);
+    Srtf(string inFile) : SchedSim(inFile){};
     ~Srtf(void){};
     void run();
 
@@ -29,7 +29,7 @@ class Srtf : public SchedSim{
   double aveTurnAround();
 
   //description: this function will find the cpu Usage for the scheduler
-  // double cpuUsage();
+  double cpuUsage();
 
   //description: is a function within this class to find the shortest process
   //once it finds the shortest process it will output the index of where that short
